@@ -1,11 +1,9 @@
-function TrackLoader() {
+app.factory('TrackLoader', function() {
     this.all = function() {
         return LOAD_ALL_THE_TRACKS;
     }
     return this;
-}
-
-app.factory('TrackLoader', TrackLoader);
+});
 
 var LOAD_ALL_THE_TRACKS = [
     {

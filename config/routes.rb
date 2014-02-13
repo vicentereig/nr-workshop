@@ -1,4 +1,3 @@
 NrWorkshop::Application.routes.draw do
-  root 'playlists#index'
+  root 'application#index'
 end
-

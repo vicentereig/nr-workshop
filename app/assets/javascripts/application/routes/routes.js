@@ -1,6 +1,6 @@
 app.config(['$routeProvider', function($routeProvider) {
     $routeProvider.when('/', {
-        controller: 'ApplicationController',
-        templateUrl: 'application/templates/application.html'
+        controller: 'LibraryController',
+        templateUrl: 'application/templates/library/index.html'
     });
 }]);

@@ -1,0 +1,37 @@
+<p class="lead">{{selectedTrackCount}} selected tracks — {{starredTrackCount}} starred tracks</p>
+<button class="btn btn-primary btn-large"
+        ng-controller="PlaylistController"
+        ng-click="createPlaylist()"
+        ng-disabled="createPlaylistDisabled">
+    Create a Playlist
+</button>
+
+
+
+<table class="table table-striped table-condensed table-hover">
+    <thead>
+        <tr>
+            <th></th>
+            <th></th>
+            <th>Name</th>
+            <th>Artists</th>
+            <th>Album</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="track in tracks" ng-controller="TrackController">
+            <td>
+                <a ng-click="toggleStar()" ng-controller="ToggleStarController">
+                    <i class="fa"
+                       ng-class="{'fa-star': track.starred, 'fa-star-o': !track.starred}"></i>
+                </a>
+            </td>
+            <td>
+                <input type="checkbox" ng-model="track.selected"/>
+            </td>
+            <td>{{ track.name }}</td>
+            <td>{{ track.artists | pluck:'name' | join:', ' }}</td>
+            <td>{{ track.album.name }}</td>
+        </tr>
+    </tbody>
+</table>
