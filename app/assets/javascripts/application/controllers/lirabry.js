@@ -1,9 +1,11 @@
 app.controller('LibraryController', ['$scope', 'TrackLoader', function($scope, TrackLoader){
     $scope.tracks = TrackLoader.all();
 
-    $scope.selectedTracks = [];
+    $scope.selectedTracks;
     this.selectedTracksWillChange = function(tracks) {
-        // TODO! :)
+        $scope.selectedTracks = tracks.filter(function(track){
+            return track.selected;
+        });
     };
     $scope.$watch('tracks', this.selectedTracksWillChange, true);
 
