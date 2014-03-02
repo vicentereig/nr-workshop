@@ -1,6 +1,16 @@
-app.config(['$routeProvider', function($routeProvider) {
-    $routeProvider.when('/', {
-        controller: 'LibraryController',
-        templateUrl: 'application/templates/library/index.html'
+app.config(['$stateProvider', function($stateProvider) {
+    $stateProvider.state('home', {
+        route: '/',
+        views: {
+            main: {
+                controller: 'LibraryController',
+                template: 'application/templates/library/index.html',
+            }
+        },
+        resolve: {
+            tracks: ['TrackLoader', function(TrackLoader){
+                return TrackLoader.all();
+            }]
+        }
     });
 }]);

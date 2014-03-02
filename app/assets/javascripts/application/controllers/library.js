@@ -1,5 +1,5 @@
-app.controller('LibraryController', ['$scope', 'TrackLoader', function($scope, TrackLoader){
-    $scope.tracks = TrackLoader.all();
+app.controller('LibraryController', ['$scope', 'tracks', function($scope, tracks){
+    $scope.tracks = tracks;
 
     $scope.selectedTracks;
     this.selectedTracksWillChange = function(tracks) {

@@ -1,1 +1,1 @@
-var app = angular.module('HolaPlaylists', ['ngRoute', 'templates']);
+var app = angular.module('HolaPlaylists', ['dotjem.routing', 'templates']);
