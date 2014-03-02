@@ -14,8 +14,23 @@ app.config(['$stateProvider', function($stateProvider) {
             },
             resolve: {
                 playlists: ['PlaylistLoader', function(PlaylistLoader) {
-                    console.log('playlists: resolving list of playlists');
+                    console.log('Loading all playlists.');
                     return PlaylistLoader.all();
+                }]
+            }
+        })
+        .state('playlists.starred', {
+            route: '/starred',
+            views: {
+                main: {
+                    controller: 'TracksController',
+                    template: 'application/templates/starred/index.html'
+                }
+            },
+            resolve: {
+                tracks: ['TrackLoader', function(TrackLoader){
+                    console.log('Loading all starred songs.');
+                    return TrackLoader.starred();
                 }]
             }
         })
@@ -24,12 +39,12 @@ app.config(['$stateProvider', function($stateProvider) {
             views: {
                 main: {
                     controller: 'TracksController',
-                    template: 'application/templates/tracks/index.html'
+                    template: 'application/templates/library/index.html'
                 }
             },
             resolve: {
                 tracks: ['TrackLoader', function(TrackLoader){
-                    console.log('playlists.library: resolving all tracks in library.')
+                    console.log('Loading all songs.');
                     return TrackLoader.all();
                 }]
             }
@@ -38,14 +53,17 @@ app.config(['$stateProvider', function($stateProvider) {
             route: '/playlists/:id',
             views: {
                 main: {
-                    controller: 'TracksController',
-                    template: 'application/templates/tracks/index.html'
+                    controller: 'ShowPlaylistController',
+                    template: 'application/templates/playlists/show.html'
                 }
             },
+
             resolve: {
-                tracks: ['TrackLoader', '$state', function(TrackLoader, $state){
-                    return TrackLoader.all();
+                playlist: ['PlaylistLoader', '$to', function(PlaylistLoader, $to){
+                    var playlistId = $to.$params.id
+                    return PlaylistLoader.find(playlistId);
                 }]
             }
         });
 }]);
+

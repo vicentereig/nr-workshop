@@ -1,4 +1,10 @@
 app.factory('TrackLoader', function() {
+    this.starred = function () {
+        return this.all().filter(function(track){
+            return track.starred;
+        });
+    }
+
     this.all = function() {
         return LOAD_ALL_THE_TRACKS;
     }

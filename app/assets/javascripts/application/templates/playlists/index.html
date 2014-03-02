@@ -1,5 +1,10 @@
 <a class="btn btn-large" sref="'playlists.library'">My Library</a>
 
+<a class="btn btn-large" sref="'playlists.starred'">
+    <i class="fa fa-star"></i> Starred
+    {{ starredTracks }}
+</a>
+
 <div class="list-group">
     <a ng-repeat="playlist in playlists"
        sref="'playlists.show'" params="{id: playlist.id}" active-class="'active'"

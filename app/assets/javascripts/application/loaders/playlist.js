@@ -1,4 +1,18 @@
 app.service('PlaylistLoader', function() {
+    this.find = function(id) {
+        if (angular.isUndefined(this.playlists)) {
+            this.playlists = [];
+        }
+
+        var playlist;
+
+        playlist = this.playlists.filter(function(playlist) {
+            return playlist.id == id;
+        });
+
+        return playlist[0];
+    }
+
     this.create = function(id, name, tracks) {
         if (angular.isUndefined(this.playlists)) {
             this.playlists = [];

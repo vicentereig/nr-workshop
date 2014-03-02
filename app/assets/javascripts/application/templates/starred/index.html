@@ -1,4 +1,5 @@
-<p class="lead">{{selectedTrackCount}} selected tracks — {{starredTrackCount}} starred tracks</p>
+<h2>Starred Tracks</h2>
+
 <button class="btn btn-primary btn-large"
         ng-controller="PlaylistController"
         ng-click="createPlaylist()"
@@ -6,17 +7,15 @@
     Create a Playlist
 </button>
 
-
-
 <table class="table table-striped table-condensed table-hover">
     <thead>
-        <tr>
-            <th></th>
-            <th></th>
-            <th>Name</th>
-            <th>Artists</th>
-            <th>Album</th>
-        </tr>
+    <tr>
+        <th></th>
+        <th></th>
+        <th>Name</th>
+        <th>Artists</th>
+        <th>Album</th>
+    </tr>
     </thead>
     <tbody>
         <tr ng-repeat="track in tracks" ng-controller="TrackController">
