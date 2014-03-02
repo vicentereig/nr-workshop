@@ -1,4 +1,8 @@
 .container(ng-app="HolaPlaylists")
-  %h1 Hola, Playlists.
-  .row(jem-view="main")
+  .row
+    %h1 Hola Playlists
+
+  .row
+    .col-xs-3(jem-view="side")
+    .col-xs-9(jem-view="main")
 
