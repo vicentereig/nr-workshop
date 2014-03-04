@@ -60,7 +60,8 @@ app.config(['$stateProvider', function($stateProvider) {
 
             resolve: {
                 playlist: ['PlaylistLoader', '$to', function(PlaylistLoader, $to){
-                    var playlistId = $to.$params.id
+                    var playlistId = $to.$params.id;
+                    console.log('Loading all songs in the playlists #'+playlistId);
                     return PlaylistLoader.find(playlistId);
                 }]
             }
