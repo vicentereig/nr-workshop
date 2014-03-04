@@ -12,6 +12,10 @@ app.config(['$stateProvider', function($stateProvider) {
                     template: 'application/templates/playlists/index.html'
                 }
             },
+            onEnter: ['$state', function($state){
+                // Redirect to /#/library state!
+                // TODO! :)
+            }],
             resolve: {
                 playlists: ['PlaylistLoader', function(PlaylistLoader) {
                     console.log('Loading all playlists.');
