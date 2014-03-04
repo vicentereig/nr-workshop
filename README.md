@@ -1,5 +1,7 @@
 # Hola, Playlists.
 
+![2MB animated screenshot :)](./attrezzo/hola-playlists-2.gif)
+
 ![2MB animated screenshot :)](./attrezzo/hola-playlists.gif)
 
 ## New Relic's Angular Workshop
