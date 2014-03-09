@@ -14,7 +14,7 @@ app.config(['$stateProvider', function($stateProvider) {
             },
             onEnter: ['$state', function($state){
                 // Redirect to /#/library state!
-                // TODO! :)
+                $state.goto('playlists.library');
             }],
             resolve: {
                 playlists: ['PlaylistLoader', function(PlaylistLoader) {
