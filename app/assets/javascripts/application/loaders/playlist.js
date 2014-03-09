@@ -1,16 +1,24 @@
-app.service('PlaylistLoader', function() {
+app.service('PlaylistLoader', ['$q', '$timeout', function($q, $timeout) {
     this.find = function(id) {
         if (angular.isUndefined(this.playlists)) {
             this.playlists = [];
         }
 
-        var playlist;
+        var deferredPlaylist = $q.defer(),
+            self = this;
 
-        playlist = this.playlists.filter(function(playlist) {
-            return playlist.id == id;
-        });
+        $timeout(function(){
 
-        return playlist[0];
+            var playlist;
+
+            playlist = self.playlists.filter(function(playlist) {
+                return playlist.id == id;
+            });
+
+            deferredPlaylist.resolve(playlist[0]);
+        },1000);
+
+        return deferredPlaylist.promise;
     }
 
     this.create = function(id, name, tracks) {
@@ -36,5 +44,5 @@ app.service('PlaylistLoader', function() {
         return this.playlists;
     }
     return this;
-});
+}]);
 
