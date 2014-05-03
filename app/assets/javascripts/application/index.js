@@ -2,7 +2,7 @@
 //= require jquery_ujs
 //= require angular
 //= require angular-routing
-
+//= require_tree ./lib
 //= require ./app.js
 //= require_tree ./loaders
 //= require_tree ./routes

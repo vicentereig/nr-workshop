@@ -1,4 +1,4 @@
-app.controller('TrackController', ['$scope', '$log', function($scope, $log){
+HolaPlaylists.app.controller('TrackController', ['$scope', '$log', function($scope, $log){
     // $scope.track inherited from ng-repeat's $scope!
     this.trackDidChange = function(track, oldTrack) {
         if (!angular.isUndefined(track)){

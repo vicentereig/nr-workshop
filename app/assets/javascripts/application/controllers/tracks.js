@@ -1,4 +1,4 @@
-app.controller('TracksController', ['$scope', 'tracks', function($scope, tracks){
+HolaPlaylists.app.controller('TracksController', ['$scope', 'tracks', function($scope, tracks){
     $scope.tracks = tracks;
 
     $scope.selectedTracks;

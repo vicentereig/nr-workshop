@@ -1,3 +1,3 @@
-app.directive('toggleStar', function(){
+HolaPlaylists.app.directive('toggleStar', function(){
     return {};
 });

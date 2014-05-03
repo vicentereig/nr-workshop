@@ -1,1 +1,6 @@
-var app = angular.module('HolaPlaylists', ['dotjem.routing', 'templates']);
+var HolaPlaylists = Application.create('HolaPlaylists');
+
+
+
+
+

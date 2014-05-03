@@ -1,4 +1,4 @@
-app.factory('TrackLoader', function() {
+HolaPlaylists.app.factory('TrackLoader', function() {
     this.starred = function () {
         return this.all().filter(function(track){
             return track.starred;

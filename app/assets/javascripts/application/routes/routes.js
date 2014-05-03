@@ -1,21 +1,38 @@
-app.config(['$stateProvider', function($stateProvider) {
+HolaPlaylists.app.config(['$stateProvider', function($stateProvider) {
     $stateProvider
-        .state('playlists', {
+        .state('root', {
             route: '/',
+            onEnter: ['$state', function($state){
+                // Redirect to /#/library state!
+                console.log("ENTERING!!")
+                $state.goto('application.playlists.library');
+            }],
+            views: {
+                layout: {
+                    template: 'application/templates/layout.html'
+                }
+            }
+        })
+        .state('application', {
+            route: '/',
+            onEnter: ['$state', function($state){
+                // Redirect to /#/library state!
+                $state.goto('application.playlists.library');
+            }],
+            views: {
+                layout: {
+                    template: 'application/templates/layout.html'
+                }
+            }
+        })
+        .state('application.playlists', {
+            route: '/overview',
             views: {
                 main: {
                     controller: 'PlaylistsOverviewController',
                     template: 'application/templates/playlists_overview/index.html'
-                },
-                side: {
-                    controller: 'PlaylistsController',
-                    template: 'application/templates/playlists/index.html'
                 }
             },
-            onEnter: ['$state', function($state){
-                // Redirect to /#/library state!
-                $state.goto('playlists.library');
-            }],
             resolve: {
                 playlists: ['PlaylistLoader', function(PlaylistLoader) {
                     console.log('Loading all playlists.');
@@ -23,7 +40,7 @@ app.config(['$stateProvider', function($stateProvider) {
                 }]
             }
         })
-        .state('playlists.starred', {
+        .state('application.playlists.starred', {
             route: '/starred',
             views: {
                 main: {
@@ -38,7 +55,7 @@ app.config(['$stateProvider', function($stateProvider) {
                 }]
             }
         })
-        .state('playlists.library', {
+        .state('application.playlists.library', {
             route: '/library',
             views: {
                 main: {
@@ -53,7 +70,7 @@ app.config(['$stateProvider', function($stateProvider) {
                 }]
             }
         })
-        .state('playlists.show', {
+        .state('application.playlists.show', {
             route: '/playlists/:id',
             views: {
                 main: {

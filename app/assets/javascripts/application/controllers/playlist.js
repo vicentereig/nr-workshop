@@ -1,4 +1,4 @@
-app.controller('PlaylistController', ['$scope', 'PlaylistLoader', '$state', function($scope, PlaylistLoader, $state){
+HolaPlaylists.app.controller('PlaylistController', ['$scope', 'PlaylistLoader', '$state', function($scope, PlaylistLoader, $state){
     $scope.createPlaylistDisabled = true;
 
     this.createPlaylistDisabledWillChange = function(selectedTracks){

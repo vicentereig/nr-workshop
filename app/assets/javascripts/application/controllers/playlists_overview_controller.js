@@ -1,3 +1,3 @@
-app.controller('PlaylistsOverviewController', ['$scope', function($scope){
+HolaPlaylists.app.controller('PlaylistsOverviewController', ['$scope', function($scope){
 
 }]);

@@ -1,4 +1,4 @@
-app.filter('join', function() {
+HolaPlaylists.app.filter('join', function() {
     return function(strings, delimiter) {
         if(!delimiter) {
             delimiter = " ";

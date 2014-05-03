@@ -1,4 +1,4 @@
-app.service('PlaylistLoader', ['$q', '$timeout', function($q, $timeout) {
+HolaPlaylists.app.service('PlaylistLoader', ['$q', '$timeout', function($q, $timeout) {
     this.find = function(id) {
         if (angular.isUndefined(this.playlists)) {
             this.playlists = [];
