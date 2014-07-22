@@ -17,9 +17,9 @@ app.config(['$stateProvider', function($stateProvider) {
                 $state.goto('playlists.library');
             }],
             resolve: {
-                playlists: ['PlaylistLoader', function(PlaylistLoader) {
+                playlists: ['PlaylistRepo', function(playlistRepo) {
                     console.log('Loading all playlists.');
-                    return PlaylistLoader.all();
+                    return playlistRepo.all();
                 }]
             }
         })
@@ -32,9 +32,9 @@ app.config(['$stateProvider', function($stateProvider) {
                 }
             },
             resolve: {
-                tracks: ['TrackLoader', function(TrackLoader){
+                tracks: ['TrackRepo', function(trackRepo){
                     console.log('Loading all starred songs.');
-                    return TrackLoader.starred();
+                    return trackRepo.starred();
                 }]
             }
         })
@@ -47,9 +47,9 @@ app.config(['$stateProvider', function($stateProvider) {
                 }
             },
             resolve: {
-                tracks: ['TrackLoader', function(TrackLoader){
+                tracks: ['TrackRepo', function(trackRepo){
                     console.log('Loading all songs.');
-                    return TrackLoader.all();
+                    return trackRepo.all();
                 }]
             }
         })
@@ -63,10 +63,10 @@ app.config(['$stateProvider', function($stateProvider) {
             },
 
             resolve: {
-                playlist: ['PlaylistLoader', '$to', function(PlaylistLoader, destinationState) {
+                playlist: ['PlaylistRepo', '$to', function(playlistRepo, destinationState) {
                     var playlistId = destinationState.$params.id;
                     console.log('Loading all songs in the playlists #'+playlistId);
-                    return PlaylistLoader.find(playlistId);
+                    return playlistRepo.find(playlistId);
                 }]
             }
         });

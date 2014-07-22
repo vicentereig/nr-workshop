@@ -1,4 +1,4 @@
-app.service('PlaylistLoader', ['$q', '$timeout', function($q, $timeout) {
+app.service('InMemoryPlaylistAdapter', ['$q', '$timeout', 'TrackRepo', function($q, $timeout, trackRepo) {
     this.find = function(id) {
         if (angular.isUndefined(this.playlists)) {
             this.playlists = [];
@@ -7,34 +7,30 @@ app.service('PlaylistLoader', ['$q', '$timeout', function($q, $timeout) {
         var deferredPlaylist = $q.defer(),
             self = this;
 
+        // We are simulating a 1 second delay.
         $timeout(function(){
 
             var playlist;
 
             playlist = self.playlists.filter(function(playlist) {
                 return playlist.id == id;
-            });
+            })[0];
 
-            deferredPlaylist.resolve(playlist[0]);
+            playlist.tracks = trackRepo.find(playlist.trackIds);
+            deferredPlaylist.resolve(playlist);
         },1000);
 
         return deferredPlaylist.promise;
     }
 
-    this.create = function(id, name, tracks) {
+    this.create = function(playlist) {
         if (angular.isUndefined(this.playlists)) {
             this.playlists = [];
         }
 
-        var track = {
-                id: id,
-              name: name,
-            tracks: tracks
-        };
+        this.playlists.push(playlist);
 
-        this.playlists.push(track);
-
-        return track;
+        return playlist;
     }
 
     this.all = function() {
@@ -45,4 +41,3 @@ app.service('PlaylistLoader', ['$q', '$timeout', function($q, $timeout) {
     }
     return this;
 }]);
-

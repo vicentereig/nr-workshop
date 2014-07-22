@@ -1,18 +1,35 @@
-app.factory('TrackLoader', function() {
-    this.starred = function () {
+app.service('InMemoryTrackAdapter', function(){
+    this.starred = function() {
         return this.all().filter(function(track){
             return track.starred;
         });
     }
 
-    this.all = function() {
-        return LOAD_ALL_THE_TRACKS;
+    this.all = function () {
+        var trackIds = Object.keys(TrackStorage);
+        return trackIds.map(function(trackId){
+            return TrackStorage[trackId];
+        });
     }
+
+    this.save = function(track) {
+        TrackStorage[track.id] = track;
+    }
+
+    this.find = function(ids) {
+        var trackIds = [].concat(ids);
+
+        return trackIds.map(function(trackId){
+            return TrackStorage[trackId];
+        });
+    }
+
     return this;
 });
 
-var LOAD_ALL_THE_TRACKS = [
-    {
+
+var TrackStorage = {
+    1: {
         id: 1,
         starred: true,
         selected: false,
@@ -24,7 +41,7 @@ var LOAD_ALL_THE_TRACKS = [
         },
         duration: 261
     },
-    {
+    2: {
         id: 2,
         starred: false,
         selected: false,
@@ -36,7 +53,7 @@ var LOAD_ALL_THE_TRACKS = [
         },
         duration: 122
     },
-    {
+    3: {
         id: 3,
         starred: true,
         selected: false,
@@ -48,7 +65,7 @@ var LOAD_ALL_THE_TRACKS = [
         },
         duration: 144
     },
-    {
+    4: {
         id: 4,
         starred: false,
         selected: false,
@@ -61,7 +78,7 @@ var LOAD_ALL_THE_TRACKS = [
         duration: 229
 
     },
-    {
+    5: {
         id: 5,
         starred: true,
         selected: false,
@@ -73,7 +90,7 @@ var LOAD_ALL_THE_TRACKS = [
         },
         duration: 226
     },
-    {
+    6: {
         id: 6,
         starred: false,
         selected: false,
@@ -85,7 +102,7 @@ var LOAD_ALL_THE_TRACKS = [
         },
         duration: 601
     },
-    {
+    7: {
         id: 7,
         starred: true,
         selected: false,
@@ -97,4 +114,5 @@ var LOAD_ALL_THE_TRACKS = [
         },
         duration: 190
     }
-];
+};
+
