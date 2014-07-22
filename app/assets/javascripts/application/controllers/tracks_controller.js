@@ -1,4 +1,4 @@
-app.controller('TracksController', ['$scope', 'tracks', function($scope, tracks){
+app.controller('TracksController', ['$scope', 'tracks', 'TrackRepo', function($scope, tracks, trackRepo){
     $scope.tracks = tracks;
 
     $scope.selectedTracks;
@@ -28,4 +28,17 @@ app.controller('TracksController', ['$scope', 'tracks', function($scope, tracks)
     }
     $scope.$watch('tracks', this.starredTrackCountWillChange, true);
 
+    $scope.toggleAllTracksSelected = false;
+    this.performToggleAllTracksSelected = function(oldValue, newValue) {
+        if (oldValue == newValue) {
+            return;
+        }
+
+        $scope.toggleAllTracksSelected = !$scope.toggleAllTracksSelected;
+        tracks.forEach(function(track) {
+            track.selected = $scope.toggleAllTracksSelected;
+            trackRepo.save(track);
+        });
+    }
+    $scope.$watch('toggleAllTrackSelected', this.performToggleAllTracksSelected);
 }]);
