@@ -17,8 +17,8 @@ app.config(['$stateProvider', function($stateProvider) {
                 $state.goto('playlists.library');
             }],
             resolve: {
-                playlists: ['PlaylistRepo', function(playlistRepo) {
-                    console.log('Loading all playlists.');
+                playlists: ['PlaylistRepo', '$log', function(playlistRepo, $log) {
+                    $log.log('Loading all playlists.');
                     return playlistRepo.all();
                 }]
             }
@@ -32,8 +32,8 @@ app.config(['$stateProvider', function($stateProvider) {
                 }
             },
             resolve: {
-                tracks: ['TrackRepo', function(trackRepo){
-                    console.log('Loading all starred songs.');
+                tracks: ['TrackRepo', '$log', function(trackRepo, $log){
+                    $log.log('Loading all starred songs.');
                     return trackRepo.starred();
                 }]
             }
@@ -47,8 +47,8 @@ app.config(['$stateProvider', function($stateProvider) {
                 }
             },
             resolve: {
-                tracks: ['TrackRepo', function(trackRepo){
-                    console.log('Loading all songs.');
+                tracks: ['TrackRepo', '$log', function(trackRepo, $log){
+                    $log.log('Loading all songs.');
                     return trackRepo.all();
                 }]
             }
@@ -63,9 +63,9 @@ app.config(['$stateProvider', function($stateProvider) {
             },
 
             resolve: {
-                playlist: ['PlaylistRepo', '$to', function(playlistRepo, destinationState) {
+                playlist: ['PlaylistRepo', '$to', '$log', function(playlistRepo, destinationState, $log) {
                     var playlistId = destinationState.$params.id;
-                    console.log('Loading all songs in the playlists #'+playlistId);
+                    $log.log('Loading all songs in the playlists #'+playlistId);
                     return playlistRepo.find(playlistId);
                 }]
             }
