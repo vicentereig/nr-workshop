@@ -1,4 +1,4 @@
-app.controller('PlaylistController', ['$scope', 'PlaylistRepo', '$state', function($scope, playlistRepo, $state){
+app.controller('PlaylistController', ['$scope', 'PlaylistRepo', '$state', '$log', function($scope, playlistRepo, $state, $log){
     $scope.createPlaylistDisabled = true;
 
     this.createPlaylistDisabledWillChange = function(selectedTracks){
@@ -11,7 +11,7 @@ app.controller('PlaylistController', ['$scope', 'PlaylistRepo', '$state', functi
     $scope.createPlaylist = function() {
         var trackNames = $scope.selectedTracks.map(function(t){ return t.name });
 
-        console.log("Creating a playlist out of: "+trackNames);
+        $log.log("Creating a playlist out of: "+trackNames);
 
 
         var id = Date.now() % 100; // yup, faking an ID for this playlist.

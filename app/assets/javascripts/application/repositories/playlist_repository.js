@@ -10,6 +10,10 @@ app.service('PlaylistRepo', ['InMemoryPlaylistAdapter', function(adapter) {
     this.all = function() {
        return adapter.all();
     }
+
+    this.save = function(playlist) {
+        adapter.save(playlist);
+    }
     return this;
 }]);
 

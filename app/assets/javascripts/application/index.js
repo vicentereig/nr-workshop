@@ -2,6 +2,7 @@
 //= require jquery_ujs
 //= require angular
 //= require angular-routing
+//= require xeditable
 
 //= require ./app.js
 //= require_tree ./adapters

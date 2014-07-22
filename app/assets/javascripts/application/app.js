@@ -1,1 +1,1 @@
-var app = angular.module('HolaPlaylists', ['dotjem.routing', 'templates']);
+var app = angular.module('HolaPlaylists', ['dotjem.routing', 'templates', 'xeditable']);

@@ -1,7 +1,7 @@
 app.service('InMemoryPlaylistAdapter', ['$q', '$timeout', 'TrackRepo', function($q, $timeout, trackRepo) {
     this.find = function(id) {
         if (angular.isUndefined(this.playlists)) {
-            this.playlists = [];
+            this.playlists = {};
         }
 
         var deferredPlaylist = $q.defer(),
@@ -12,11 +12,9 @@ app.service('InMemoryPlaylistAdapter', ['$q', '$timeout', 'TrackRepo', function(
 
             var playlist;
 
-            playlist = self.playlists.filter(function(playlist) {
-                return playlist.id == id;
-            })[0];
-
+            playlist = self.playlists[id];
             playlist.tracks = trackRepo.find(playlist.trackIds);
+
             deferredPlaylist.resolve(playlist);
         },1000);
 
@@ -24,20 +22,25 @@ app.service('InMemoryPlaylistAdapter', ['$q', '$timeout', 'TrackRepo', function(
     }
 
     this.create = function(playlist) {
-        if (angular.isUndefined(this.playlists)) {
-            this.playlists = [];
-        }
-
-        this.playlists.push(playlist);
+        this.save(playlist);
 
         return playlist;
     }
 
     this.all = function() {
         if (angular.isUndefined(this.playlists)) {
-            this.playlists = [];
+            this.playlists = {};
         }
         return this.playlists;
     }
+
+    this.save = function(playlist) {
+        if (angular.isUndefined(this.playlists)) {
+            this.playlists = {};
+        }
+
+        this.playlists[playlist.id] = playlist;
+    }
+
     return this;
 }]);
