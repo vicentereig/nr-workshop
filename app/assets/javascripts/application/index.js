@@ -2,6 +2,7 @@
 //= require jquery_ujs
 //= require angular
 //= require angular-routing
+//= require angular-rails-templates
 //= require xeditable
 
 //= require ./app.js
