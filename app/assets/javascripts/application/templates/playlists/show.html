@@ -1,25 +1,3 @@
 <h2 editable-text="playlist.name">{{ playlist.name }}</h2>
-<table class="table table-striped table-condensed table-hover">
-    <thead>
-        <tr>
-            <th></th>
-            <th>Name</th>
-            <th>Artists</th>
-            <th>Album</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr ng-repeat="track in playlist.tracks" ng-controller="TrackController">
-            <td>
-                <a ng-click="toggleStar()" ng-controller="ToggleStarController">
-                    <i class="fa"
-                       ng-class="{'fa-star': track.starred, 'fa-star-o': !track.starred}"></i>
-                </a>
-            </td>
 
-            <td>{{ track.name }}</td>
-            <td>{{ track.artists | pluck:'name' | join:', ' }}</td>
-            <td>{{ track.album.name }}</td>
-        </tr>
-    </tbody>
-</table>
+<playlist-grid tracks="playlist.tracks"/>
