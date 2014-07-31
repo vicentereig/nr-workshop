@@ -1,0 +1,24 @@
+<table class="table table-striped table-condensed table-hover">
+    <thead>
+    <tr>
+        <th></th>
+        <th><input type="checkbox" ng-model="toggleAllTrackSelected"/></th>
+        <th>Name</th>
+        <th>Artists</th>
+        <th>Album</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="track in tracks" ng-controller="TrackController">
+        <td>
+            <star-track-component track="track">
+        </td>
+        <td>
+            <input type="checkbox" ng-model="track.selected"/>
+        </td>
+        <td>{{ track.name }}</td>
+        <td>{{ track.artists | pluck:'name' | join:', ' }}</td>
+        <td>{{ track.album.name }}</td>
+    </tr>
+    </tbody>
+</table>
