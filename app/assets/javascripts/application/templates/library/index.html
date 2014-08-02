@@ -1,6 +1,6 @@
 <h2>My Library</h2>
 
-<p class="lead">{{selectedTrackCount}} selected tracks — {{starredTrackCount}} starred tracks</p>
+<p class="lead">{{library.selectedTrackCount}} selected tracks — {{library.starredTrackCount}} starred tracks</p>
 
 <button class="btn btn-primary btn-large"
         ng-controller="PlaylistController"
@@ -9,4 +9,4 @@
     Create a Playlist
 </button>
 
-<library-component tracks="tracks"/>
+<library-component tracks="library.tracks"/>

@@ -2,6 +2,9 @@ app.controller('PlaylistController', ['$scope', 'PlaylistRepo', '$state', '$log'
     $scope.createPlaylistDisabled = true;
 
     this.createPlaylistDisabledWillChange = function(selectedTracks){
+        if (angular.isUndefined(selectedTracks)) {
+            return;
+        }
         $scope.createPlaylistDisabled = (selectedTracks.length == 0);
     };
 
