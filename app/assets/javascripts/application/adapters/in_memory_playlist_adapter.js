@@ -7,16 +7,16 @@ app.service('InMemoryPlaylistAdapter', ['$q', '$timeout', 'TrackRepo', function(
         var deferredPlaylist = $q.defer(),
             self = this;
 
-        // We are simulating a 1 second delay.
+        // We are simulating a 0.5 sec delay.
         $timeout(function(){
 
             var playlist;
 
             playlist = self.playlists[id];
-            playlist.tracks = trackRepo.find(playlist.trackIds);
+            playlist.set('tracks',trackRepo.find(playlist.trackIds));
 
             deferredPlaylist.resolve(playlist);
-        },1000);
+        },500);
 
         return deferredPlaylist.promise;
     }
@@ -39,7 +39,7 @@ app.service('InMemoryPlaylistAdapter', ['$q', '$timeout', 'TrackRepo', function(
             this.playlists = {};
         }
 
-        this.playlists[playlist.id] = playlist;
+        this.playlists[playlist.id] = Ember.Object.create(playlist);
     }
 
     return this;

@@ -1,3 +1,10 @@
+GIT
+  remote: git://github.com/vicentereig/embular-object.git
+  revision: f727c3a8b6d2fac7329de6a75b5a5a25683d6e01
+  specs:
+    embular-object (0.0.3)
+      rails (>= 3.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -136,6 +143,7 @@ DEPENDENCIES
   angularjs-rails
   bootstrap-sass (~> 3.1.0)
   byebug
+  embular-object!
   font-awesome-rails
   haml-rails
   jbuilder (~> 1.2)

@@ -1,28 +1,48 @@
 app.service('InMemoryTrackAdapter', function(){
+    this.tracks = Ember.Map.create();
+
+    this._initStorage = function() {
+        var trackIds = Object.keys(TrackStorage);
+        var self = this;
+        trackIds.forEach(function(trackId){
+            var track = Ember.Object.create(TrackStorage[trackId]);
+            self.save(track);
+        });
+    }
+
     this.starred = function() {
         return this.all().filter(function(track){
             return track.starred;
         });
-    }
+    };
 
     this.all = function () {
-        var trackIds = Object.keys(TrackStorage);
-        return trackIds.map(function(trackId){
-            return TrackStorage[trackId];
+        var self, ids, tracks;
+
+        self   = this;
+        ids    = Object.keys(this.tracks.values);
+        tracks = ids.map(function(id) {
+            return self.tracks.values[id]
         });
-    }
+
+        return Ember.A(tracks);
+    };
 
     this.save = function(track) {
-        TrackStorage[track.id] = track;
-    }
+        return this.tracks.set(track.get('id'), track);
+    };
 
     this.find = function(ids) {
-        var trackIds = [].concat(ids);
+        var self, trackIds;
+        self     = this;
+        trackIds = [].concat(ids);
 
         return trackIds.map(function(trackId){
-            return TrackStorage[trackId];
+            return self.tracks.get(trackId);
         });
-    }
+    };
+
+    this._initStorage();
 
     return this;
 });

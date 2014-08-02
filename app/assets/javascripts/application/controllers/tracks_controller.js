@@ -1,7 +1,7 @@
-app.controller('TracksController', ['$scope', 'tracks', 'TrackRepo', function($scope, tracks, trackRepo){
+app.controller('TracksController', ['$scope', 'tracks', function($scope, tracks){
     $scope.tracks = tracks;
 
-    $scope.selectedTracks;
+    $scope.selectedTracks = [];
     this.selectedTracksWillChange = function(tracks) {
         $scope.selectedTracks = tracks.filter(function(track){
             return track.selected;
@@ -10,7 +10,7 @@ app.controller('TracksController', ['$scope', 'tracks', 'TrackRepo', function($s
     $scope.$watch('tracks', this.selectedTracksWillChange, true);
 
 
-    $scope.selectedTrackCount;
+    $scope.selectedTrackCount = 0;
     this.selectedTrackDidChange = function(selectedTracks) {
         if ( !angular.isUndefined(selectedTracks) ) {
             $scope.selectedTrackCount = selectedTracks.length;
@@ -19,7 +19,7 @@ app.controller('TracksController', ['$scope', 'tracks', 'TrackRepo', function($s
     $scope.$watch('selectedTracks', this.selectedTrackDidChange, true);
 
 
-    $scope.starredTrackCount;
+    $scope.starredTrackCount = 0;
     this.starredTrackCountWillChange = function(tracks) {
         if ( !angular.isUndefined(tracks) ) {
             var starredTracks = tracks.filter(function(track) { return track.starred });

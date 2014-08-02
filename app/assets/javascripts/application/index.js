@@ -4,6 +4,7 @@
 //= require angular-routing
 //= require angular-rails-templates
 //= require xeditable
+//= require embular-object
 
 //= require ./app.js
 //= require_tree ./adapters
