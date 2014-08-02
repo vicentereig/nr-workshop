@@ -1,4 +1,4 @@
-app.controller('TracksController', ['$scope', 'tracks', function($scope, tracks){
+function TracksController($scope, tracks) {
     $scope.tracks = tracks;
 
     $scope.selectedTracks = [];
@@ -27,4 +27,6 @@ app.controller('TracksController', ['$scope', 'tracks', function($scope, tracks)
         }
     }
     $scope.$watch('tracks', this.starredTrackCountWillChange, true);
-}]);
+}
+
+app.controller('TracksController', ['$scope', 'tracks', TracksController]);
