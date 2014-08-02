@@ -1,6 +1,7 @@
 app.controller('ToggleStarController', ['$scope', 'TrackRepo', function($scope, trackRepo){
     $scope.toggleStar = function() {
-        $scope.track.starred = !$scope.track.starred;
+        $scope.track.set('starred', !$scope.track.starred);
+        console.log($scope.track);
         trackRepo.save($scope.track);
     }
 }])

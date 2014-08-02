@@ -42,14 +42,13 @@ app.config(['$stateProvider', function($stateProvider) {
             route: '/library',
             views: {
                 main: {
-                    controller: 'TracksController',
+                    controller: 'LibraryController',
                     template: 'application/templates/library/index.html'
                 }
             },
             resolve: {
-                tracks: ['TrackRepo', '$log', function(trackRepo, $log){
-                    $log.log('Loading all songs.');
-                    return trackRepo.all();
+                library: ['TrackRepo', function(trackRepo){
+                    return {tracks: trackRepo.all()};
                 }]
             }
         })

@@ -8,5 +8,10 @@
         ng-disabled="createPlaylistDisabled">
     Create a Playlist
 </button>
-
-<library-component tracks="library.tracks"/>
+<div class="row">
+    <br/>
+<pre>
+    {{library.tracks.length}} tracks — {{library.selectedTracks.length}} selected
+</pre>
+</div>
+<track-list-component library="library"/>

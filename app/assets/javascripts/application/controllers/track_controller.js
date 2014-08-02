@@ -1,8 +1,8 @@
 app.controller('TrackController', ['$scope', '$log', 'TrackRepo', function($scope, $log, trackRepo){
-    // $scope.track inherited from ng-repeat's $scope!
     this.trackDidChange = function(track, oldTrack) {
         if (!angular.isUndefined(track)){
             $log.log(' - Track "'+track.id+'" did change.');
+            $log.log(track);
             trackRepo.save(track);
         }
     }

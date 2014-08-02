@@ -2,14 +2,14 @@
     <thead>
     <tr>
         <th></th>
-        <th><input type="checkbox" ng-model="toggleAllTrackSelected"/></th>
+        <th><input type="checkbox" ng-model="library.toggleAllTracksSelected"/></th>
         <th>Name</th>
         <th>Artists</th>
         <th>Album</th>
     </tr>
     </thead>
     <tbody>
-    <tr ng-repeat="track in tracks" ng-controller="TrackController">
+    <tr ng-repeat="track in library.tracks" ng-controller="TrackController">
         <td>
             <star-track-component track="track">
         </td>
